@@ -1,18 +1,13 @@
-import com.codeborne.selenide.Condition;
-import com.codeborne.selenide.SelenideElement;
 import io.qameta.allure.*;
 
-import java.time.Duration;
-
-import static com.codeborne.selenide.Condition.visible;
 import static com.codeborne.selenide.Selenide.$x;
 import static com.codeborne.selenide.Selenide.open;
 
 public class YandexSearchPage {
 
-    SelenideElement search = $x("//div[@class= 'search3__input-inner-container']//textarea[@placeholder='Найдётся всё']");
-    SelenideElement buttonSearch = $x("//div[@class='search3__inner']//button[@aria-label='Найти']");
-    SelenideElement icon = $x("//div[@class='HeaderDesktop']//a[@aria-label='Яндекс']");
+    protected final SearchInput searchInput = new SearchInput($x("//div[@class= 'search3__input-inner-container']//textarea[@placeholder='Найдётся всё']"),"Поисковое поле");
+    protected final ButtonSearch buttonSearch = new ButtonSearch($x("//div[@class='search3__inner']//button[@aria-label='Найти']"),"Кнопка поиска");
+    protected final YandexLogo yandexLogo = new YandexLogo ($x("//div[@class='HeaderDesktop']//a[@aria-label='Яндекс']"),"Логотип Яндекса");
 
     @Step("Открыть главную страницу Яндекс")
     public YandexSearchPage openYandex(String link){
@@ -22,7 +17,7 @@ public class YandexSearchPage {
 
     @Step("Ввести поисковый запрос: {text}")
     public YandexSearchPage inputSearchQuery(String text){
-        search.shouldBe(visible, Duration.ofSeconds(10)).shouldBe(Condition.enabled).setValue(text);
+        searchInput.setValue(text);
         return this;
     }
 
@@ -34,7 +29,7 @@ public class YandexSearchPage {
 
     @Step("Проверить отображения иконки яндекс")
     public YandexSearchPage checkIcon(){
-        icon.shouldBe(visible);
+        yandexLogo.shouldBeVisible();
         return this;
     }
 }

@@ -1,5 +1,8 @@
 import io.qameta.allure.*;
+import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
+
+import java.io.IOException;
 
 
 public class TestYandex extends BasePage {
@@ -13,4 +16,15 @@ public class TestYandex extends BasePage {
                 .clickSearchButton()
                 .checkIcon();
     }
+
+    @Test
+    void exeption() {
+        try {
+            String s = null;
+            System.out.println(s.length());
+        } catch (NullPointerException e) {
+            System.out.println("Исключение: " + e);
+        }
+        Assertions.assertTrue(false);
+}
 }

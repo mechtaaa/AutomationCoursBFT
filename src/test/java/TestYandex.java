@@ -23,7 +23,7 @@ public class TestYandex extends BasePage {
             String s = null;
             System.out.println(s.length());
         } catch (NullPointerException e) {
-            System.out.println("Исключение: " + e);
+            System.out.println("Переменная равна null!");
         }
         Assertions.assertTrue(false);
 }

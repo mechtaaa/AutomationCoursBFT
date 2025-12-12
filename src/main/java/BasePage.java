@@ -6,12 +6,13 @@ import org.junit.jupiter.api.BeforeAll;
 import static com.codeborne.selenide.Selenide.closeWebDriver;
 
 public class BasePage {
-
     protected YandexSearchPage yandexSearchPage = new YandexSearchPage();
+    protected FormPage formPage = new FormPage();
 
     @BeforeAll
     public static void settings() {
         Configuration.browser = "chrome";
+        Configuration.pageLoadStrategy = "eager";
         Configuration.timeout = 10000;
         Configuration.holdBrowserOpen = false;
     }
